@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Switch, Route, Redirect } from "react-router-dom";
+// import { Switch, Route, Redirect } from "react-router-dom";
 import Header from "./Header";
 //import Home from "./Home";
 import axios from "axios";
@@ -11,6 +11,8 @@ class Main extends Component {
       weatherData: {},
     };
     this.storeWeatherData = this.storeWeatherData.bind(this);
+    this.getWeatherData = this.getWeatherData.bind(this);
+    this.convertLocationIntoString = this.convertLocationIntoString.bind(this);
   }
 
   storeWeatherData(data) {
@@ -25,13 +27,15 @@ class Main extends Component {
         `https://maps.googleapis.com/maps/api/geocode/json?address=${address}&key=AIzaSyD1Gxt9irjoAYzRDvCbs_DYgKJtATYAmnA`
       );
       console.log(result);
-      const lat = result.results[0].geometry.location.lat;
-      const lon = result.results[0].geometry.location.lng;
+      const lat = result.data.results[0].geometry.location.lat;
+      console.log(lat);
+      const lon = result.data.results[0].geometry.location.lng;
       const data = await axios(
         `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&units=imperial&appid=27cb6d460482e895ae4d104c55c13c09`
       );
+      console.log("data");
       console.log(data);
-      return data;
+      return data.data;
     } catch (error) {
       console.log(error);
     }
