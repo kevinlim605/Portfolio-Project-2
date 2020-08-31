@@ -1,10 +1,12 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
+import { Button } from "reactstrap";
 import { Card, CardImg, CardText, CardBody, CardTitle } from "reactstrap";
 
 function RenderDailyWeatherCard(props) {
   const url = `http://openweathermap.org/img/wn/${props.weatherData.weather[0].icon}@2x.png`;
   const date = new Date(props.weatherData.dt * 1000);
-  const dateString = date.toString(date);
+  const dateString = date.toString();
   console.log(date);
   return (
     <Card>
@@ -22,50 +24,43 @@ function RenderDailyWeatherCard(props) {
 }
 
 function DailyForecast(props) {
-  return (
-    <div className="container">
-      <div className="row">
-        <div className="col">
-          <RenderDailyWeatherCard weatherData={props.dailyWeather[0]} />
-        </div>
+  if (typeof props.weather === "undefined") {
+    return (
+      <div>
+        <h1> Please return and submit a location! </h1>
+        <Button type="button" color="secondary">
+          <Link to="/weather" style={{ color: "white" }}>
+            Return
+          </Link>
+        </Button>
       </div>
-      <div className="row">
-        <div className="col">
-          <RenderDailyWeatherCard weatherData={props.dailyWeather[1]} />
-        </div>
+    );
+  } else if (Object.keys(props.weather).length === 0) {
+    return (
+      <div>
+        <h1> Please return and submit a location! </h1>
+        <Button type="button" color="secondary">
+          <Link to="/weather" style={{ color: "white" }}>
+            Return
+          </Link>
+        </Button>
       </div>
-      <div className="row">
-        <div className="col">
-          <RenderDailyWeatherCard weatherData={props.dailyWeather[2]} />
-        </div>
+    );
+  } else {
+    return (
+      <div className="container">
+        {props.weather.daily.map((data) => {
+          return (
+            <div className="row">
+              <div className="col">
+                <RenderDailyWeatherCard weatherData={data} />
+              </div>
+            </div>
+          );
+        })}
       </div>
-      <div className="row">
-        <div className="col">
-          <RenderDailyWeatherCard weatherData={props.dailyWeather[3]} />
-        </div>
-      </div>
-      <div className="row">
-        <div className="col">
-          <RenderDailyWeatherCard weatherData={props.dailyWeather[4]} />
-        </div>
-      </div>
-      <div className="row">
-        <div className="col">
-          <RenderDailyWeatherCard weatherData={props.dailyWeather[5]} />
-        </div>
-      </div>
-      <div className="row">
-        <div className="col">
-          <RenderDailyWeatherCard weatherData={props.dailyWeather[6]} />
-        </div>
-      </div>
-      <div className="row">
-        <div className="col">
-          <RenderDailyWeatherCard weatherData={props.dailyWeather[7]} />
-        </div>
-      </div>
-    </div>
-  );
+    );
+  }
 }
 
 export default DailyForecast;

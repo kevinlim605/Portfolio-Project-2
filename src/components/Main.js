@@ -43,10 +43,12 @@ class Main extends Component {
     const address = document.getElementById("address").value;
     const city = document.getElementById("city").value;
     const state = document.getElementById("state").value;
-    const fullAddress = `${address} ${city} ${state}`.split(" ").join("+");
-    this.getWeatherData(fullAddress).then((data) => {
-      this.storeWeatherData(data);
-    });
+    if (address !== "" && city !== "" && state !== "Select...") {
+      const fullAddress = `${address} ${city} ${state}`.split(" ").join("+");
+      this.getWeatherData(fullAddress).then((data) => {
+        this.storeWeatherData(data);
+      });
+    }
   };
 
   render() {
@@ -65,9 +67,7 @@ class Main extends Component {
           />
           <Route
             path="/dailyforecast"
-            render={() => (
-              <DailyForecast dailyWeather={this.state.weatherData.daily} />
-            )}
+            render={() => <DailyForecast weather={this.state.weatherData} />}
           />
           <Redirect to="/home" />
         </Switch>
