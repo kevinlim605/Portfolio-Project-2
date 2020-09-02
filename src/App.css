@@ -12,6 +12,12 @@
   margin-bottom: 30px;
 }
 
-.return {
-  text-decoration: none;
+.site-footer {
+  background-image: linear-gradient(#cec8ff, white);
+  padding: 20px 0;
+}
+
+.fa {
+  padding-left: 2.5px;
+  padding-right: 2.5px;
 }

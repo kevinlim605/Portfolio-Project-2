@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { Button } from "reactstrap";
 import { Card, CardImg, CardText, CardBody, CardTitle } from "reactstrap";
 
-function RenderDailyWeatherCard(props) {
+function RenderHourlyWeatherCard(props) {
   const url = `http://openweathermap.org/img/wn/${props.weatherData.weather[0].icon}@2x.png`;
   const date = new Date(props.weatherData.dt * 1000);
   const dateString = date.toString();
@@ -23,7 +23,7 @@ function RenderDailyWeatherCard(props) {
   );
 }
 
-function DailyForecast(props) {
+function HourlyForecast(props) {
   if (typeof props.weather === "undefined") {
     return (
       <div>
@@ -68,11 +68,11 @@ function DailyForecast(props) {
             </Link>
           </div>
         </div>
-        {props.weather.daily.map((data) => {
+        {props.weather.hourly.map((data) => {
           return (
             <div className="row">
               <div className="col">
-                <RenderDailyWeatherCard weatherData={data} />
+                <RenderHourlyWeatherCard weatherData={data} />
               </div>
             </div>
           );
@@ -82,4 +82,4 @@ function DailyForecast(props) {
   }
 }
 
-export default DailyForecast;
+export default HourlyForecast;

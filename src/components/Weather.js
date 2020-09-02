@@ -119,7 +119,7 @@ class Weather extends Component {
           </Button>
         </LocalForm>
         <p>
-          <Link to="/dailyforecast">Click</Link>
+          <Link to="/weather/dailyforecast">Click</Link>
         </p>
       </div>
     );
