@@ -1,7 +1,15 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { Link } from "react-router-dom";
-import { Button } from "reactstrap";
-import { Card, CardImg, CardText, CardBody, CardTitle } from "reactstrap";
+import {
+  Button,
+  Card,
+  CardImg,
+  CardText,
+  CardBody,
+  CardTitle,
+  Breadcrumb,
+  BreadcrumbItem,
+} from "reactstrap";
 
 function RenderHourlyWeatherCard(props) {
   const url = `http://openweathermap.org/img/wn/${props.weatherData.weather[0].icon}@2x.png`;
@@ -48,36 +56,53 @@ function HourlyForecast(props) {
     );
   } else {
     return (
-      <div className="container">
-        <div className="row">
-          <div className="col">
-            <Link to="/weather/dailyforecast" style={{ color: "white" }}>
-              <Button type="button" color="secondary">
-                Daily Forecast
-              </Button>
-            </Link>
-            <Link to="/weather/hourlyforecast" style={{ color: "white" }}>
-              <Button type="button" color="secondary">
-                Hourly Forecast
-              </Button>
-            </Link>
-            <Link to="/weather/minutelyforecast" style={{ color: "white" }}>
-              <Button type="button" color="secondary">
-                Minutely Forecast
-              </Button>
-            </Link>
+      <Fragment>
+        <div className="container">
+          <div className="row">
+            <div className="col">
+              <Breadcrumb>
+                <BreadcrumbItem>
+                  <Link to="/home">Home</Link>
+                </BreadcrumbItem>
+                <BreadcrumbItem>
+                  <Link to="/weather">Weather</Link>
+                </BreadcrumbItem>
+                <BreadcrumbItem>Hourly Forecast</BreadcrumbItem>
+              </Breadcrumb>
+            </div>
           </div>
         </div>
-        {props.weather.hourly.map((data) => {
-          return (
-            <div className="row">
-              <div className="col">
-                <RenderHourlyWeatherCard weatherData={data} />
-              </div>
+        <div className="container">
+          <div className="row">
+            <div className="col mt-3 mb-5">
+              <Link to="/weather/dailyforecast" style={{ color: "white" }}>
+                <Button type="button" color="secondary">
+                  Daily Forecast
+                </Button>
+              </Link>
+              <Link to="/weather/hourlyforecast" style={{ color: "white" }}>
+                <Button type="button" color="secondary">
+                  Hourly Forecast
+                </Button>
+              </Link>
+              <Link to="/weather/minutelyforecast" style={{ color: "white" }}>
+                <Button type="button" color="secondary">
+                  Minutely Forecast
+                </Button>
+              </Link>
             </div>
-          );
-        })}
-      </div>
+          </div>
+          {props.weather.hourly.map((data) => {
+            return (
+              <div className="row">
+                <div className="col">
+                  <RenderHourlyWeatherCard weatherData={data} />
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </Fragment>
     );
   }
 }
