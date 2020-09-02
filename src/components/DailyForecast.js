@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import { Button } from "reactstrap";
 import { Card, CardImg, CardText, CardBody, CardTitle } from "reactstrap";

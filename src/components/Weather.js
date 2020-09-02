@@ -114,7 +114,7 @@ class Weather extends Component {
               <option value="WY">Wyoming</option>
             </Control.select>
           </div>
-          <Button id="submit" onClick={this.props.convertLocationIntoString}>
+          <Button id="submit" onClick={this.props.fetchWeatherdata}>
             Submit
           </Button>
         </LocalForm>

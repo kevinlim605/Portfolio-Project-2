@@ -1,56 +1,23 @@
 import React, { Component } from "react";
-import { Switch, Route, Redirect } from "react-router-dom";
+import { Switch, Route, Redirect, withRouter } from "react-router-dom";
+import { connect } from "react-redux";
 import Header from "./Header";
 import Home from "./Home";
 import Weather from "./Weather";
 import DailyForecast from "./DailyForecast";
-import axios from "axios";
+import { fetchWeatherdata } from "../redux/actionCreators";
+
+const mapStateToProps = (state) => {
+  return {
+    weatherdata: state.weatherData,
+  };
+};
+
+const mapDispatchToProps = {
+  fetchWeatherdata: () => fetchWeatherdata(),
+};
 
 class Main extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      weatherData: {},
-    };
-    //this.storeWeatherData = this.storeWeatherData.bind(this);
-    //this.getWeatherData = this.getWeatherData.bind(this);
-    //this.convertLocationIntoString = this.convertLocationIntoString.bind(this);
-  }
-
-  storeWeatherData = (data) => {
-    this.setState({
-      weatherData: data,
-    });
-  };
-
-  getWeatherData = async (address) => {
-    try {
-      const result = await axios(
-        `https://maps.googleapis.com/maps/api/geocode/json?address=${address}&key=AIzaSyD1Gxt9irjoAYzRDvCbs_DYgKJtATYAmnA`
-      );
-      const lat = result.data.results[0].geometry.location.lat;
-      const lon = result.data.results[0].geometry.location.lng;
-      const data = await axios(
-        `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&units=imperial&appid=27cb6d460482e895ae4d104c55c13c09`
-      );
-      return data.data;
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  convertLocationIntoString = () => {
-    const address = document.getElementById("address").value;
-    const city = document.getElementById("city").value;
-    const state = document.getElementById("state").value;
-    if (address !== "" && city !== "" && state !== "Select...") {
-      const fullAddress = `${address} ${city} ${state}`.split(" ").join("+");
-      this.getWeatherData(fullAddress).then((data) => {
-        this.storeWeatherData(data);
-      });
-    }
-  };
-
   render() {
     return (
       <div>
@@ -60,14 +27,14 @@ class Main extends Component {
           <Route
             path="/weather"
             render={() => (
-              <Weather
-                convertLocationIntoString={this.convertLocationIntoString}
-              />
+              <Weather fetchWeatherdata={this.props.fetchWeatherdata} />
             )}
           />
           <Route
             path="/dailyforecast"
-            render={() => <DailyForecast weather={this.state.weatherData} />}
+            render={() => (
+              <DailyForecast weather={this.props.weatherdata.weatherdata} />
+            )}
           />
           <Redirect to="/home" />
         </Switch>
@@ -76,4 +43,4 @@ class Main extends Component {
   }
 }
 
-export default Main;
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Main));
