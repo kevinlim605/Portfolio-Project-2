@@ -1,24 +1,44 @@
+body {
+  background-color: #b6ccd7;
+  font-size: 20px;
+  font-family: "Indie Flower", cursive;
+}
+
 .jumbotron {
   padding: 30px;
   margin-bottom: 0;
   background-image: linear-gradient(to right, #b1e5f2, #3fa7d6, #2b9eb3);
 }
 
-.jumbotron h1 {
-  font-family: "Indie Flower", cursive;
+.navbar {
+  background-image: linear-gradient(#cec8ff, #fadcdc);
 }
 
-/* .navbar {
-  margin-bottom: 30px;
-} */
-
 .site-footer {
-  background-image: linear-gradient(#cec8ff, white);
-  padding: 20px 0;
+  background-image: linear-gradient(#cec8ff, #fadcdc);
+  padding: 30px 0;
   margin-top: 30px;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+}
+
+.row-content {
+  margin-top: 15px;
 }
 
 .fa {
   padding-left: 2.5px;
   padding-right: 2.5px;
+}
+
+.form-control {
+  background-color: #e9ecef;
+}
+
+.card,
+.card-title {
+  font-weight: bold;
+  background-color: #e9ecef;
 }

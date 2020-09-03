@@ -36,7 +36,7 @@ class Header extends Component {
             </div>
           </div>
         </Jumbotron>
-        <Navbar color="light" light sticky="top" expand="md">
+        <Navbar light sticky="top" expand="md">
           <div className="container">
             <NavbarToggler onClick={this.toggleNav} />
             <Collapse isOpen={this.state.isNavOpen} navbar>

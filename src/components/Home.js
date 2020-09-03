@@ -3,9 +3,9 @@ import React from "react";
 function Home() {
   return (
     <div className="container">
-      <div class="row">
-        <div className="col">
-          <h2>Home</h2>
+      <div class="row row-content text-center">
+        <div className="col mt-5">
+          <h1>Home</h1>
         </div>
       </div>
     </div>
