@@ -15,11 +15,11 @@ function RenderDailyWeatherCard(props) {
     return <p>{props.errMess}</p>;
   } else {
     return (
-      <Card>
+      <Card className="card-selector">
         <CardImg
           src={src}
           alt={props.weatherData.weather[0].description}
-          height="200"
+          height="225"
         />
         <CardHeader>
           <h2>
@@ -115,32 +115,19 @@ function DailyForecast(props) {
                 <Link to="/weather">Weather</Link>
               </BreadcrumbItem>
               <BreadcrumbItem>Daily Forecast</BreadcrumbItem>
+              <BreadcrumbItem>
+                <Link to="/weather/hourlyforecast">Hourly Forecast</Link>
+              </BreadcrumbItem>
+              <BreadcrumbItem>
+                <Link to="/weather/minutelyforecast">Minutely Forecast</Link>
+              </BreadcrumbItem>
             </Breadcrumb>
-          </div>
-        </div>
-        <div className="row">
-          <div className="col mt-3 mb-5">
-            <Link to="/weather/dailyforecast" style={{ color: "white" }}>
-              <Button type="button" color="secondary">
-                Daily Forecast
-              </Button>
-            </Link>
-            <Link to="/weather/hourlyforecast" style={{ color: "white" }}>
-              <Button type="button" color="secondary">
-                Hourly Forecast
-              </Button>
-            </Link>
-            <Link to="/weather/minutelyforecast" style={{ color: "white" }}>
-              <Button type="button" color="secondary">
-                Minutely Forecast
-              </Button>
-            </Link>
           </div>
         </div>
         {props.weather.daily.map((data) => {
           return (
             <div className="row row-content">
-              <div className="col-md-6 offset-3">
+              <div className="col-12 col-md-6 offset-md-3">
                 <RenderDailyWeatherCard
                   weatherData={data}
                   loading={props.weatherdataLoading}

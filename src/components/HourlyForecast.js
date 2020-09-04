@@ -6,30 +6,54 @@ import {
   CardImg,
   CardText,
   CardBody,
-  CardTitle,
+  CardHeader,
   Breadcrumb,
   BreadcrumbItem,
 } from "reactstrap";
 
 function RenderHourlyWeatherCard(props) {
   const src = `../assets/images/${props.weatherData.weather[0].icon}.jpg`;
-  const url = `http://openweathermap.org/img/wn/${props.weatherData.weather[0].icon}@2x.png`;
+  const url = `http://openweathermap.org/img/wn/${props.weatherData.weather[0].icon}.png`;
   const date = new Date(props.weatherData.dt * 1000);
   const dateString = date.toString();
-  console.log(date);
   return (
-    <Card>
+    <Card className="card-selector">
       <CardImg
         src={src}
         alt={props.weatherData.weather[0].description}
-        height="200"
+        height="225"
       />
+      <CardHeader>
+        <h2>
+          <img src={url} alt="weatherIcon"></img>
+          {props.weatherData.weather[0].main}
+        </h2>
+      </CardHeader>
       <CardBody>
-        <CardTitle>{props.weatherData.weather[0].main}</CardTitle>
         <CardText>
           {dateString} <br />
-          <img src={url} alt="weatherIcon"></img>
-          {props.weatherData.weather[0].description} <br />
+          Description: {props.weatherData.weather[0].description} <br />
+          <br />
+          <div class="row">
+            <div className="col-6">Temp: {props.weatherData.temp} &#8457;</div>
+            <div className="col-6">
+              Feels Like: {props.weatherData.feels_like} &#8457;
+            </div>
+          </div>
+          <div class="row">
+            <div className="col-6">
+              Chance of Rain: {props.weatherData.pop}%
+            </div>
+            <div className="col-6">Humidity: {props.weatherData.humidity}%</div>
+          </div>
+          <div class="row">
+            <div className="col-6">
+              Wind Speed: {props.weatherData.wind_speed} mph
+            </div>
+            <div className="col-6">
+              Pressure: {props.weatherData.pressure} hPa;
+            </div>
+          </div>
         </CardText>
       </CardBody>
     </Card>
@@ -79,27 +103,14 @@ function HourlyForecast(props) {
               <BreadcrumbItem>
                 <Link to="/weather">Weather</Link>
               </BreadcrumbItem>
+              <BreadcrumbItem>
+                <Link to="/weather/Dailyforecast">Daily Forecast</Link>
+              </BreadcrumbItem>
               <BreadcrumbItem>Hourly Forecast</BreadcrumbItem>
+              <BreadcrumbItem>
+                <Link to="/weather/minutelyforecast">Minutely Forecast</Link>
+              </BreadcrumbItem>
             </Breadcrumb>
-          </div>
-        </div>
-        <div className="row">
-          <div className="col mt-3 mb-5">
-            <Link to="/weather/dailyforecast" style={{ color: "white" }}>
-              <Button type="button" color="secondary">
-                Daily Forecast
-              </Button>
-            </Link>
-            <Link to="/weather/hourlyforecast" style={{ color: "white" }}>
-              <Button type="button" color="secondary">
-                Hourly Forecast
-              </Button>
-            </Link>
-            <Link to="/weather/minutelyforecast" style={{ color: "white" }}>
-              <Button type="button" color="secondary">
-                Minutely Forecast
-              </Button>
-            </Link>
           </div>
         </div>
         {props.weather.hourly.map((data) => {

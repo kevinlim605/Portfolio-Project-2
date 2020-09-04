@@ -8,14 +8,18 @@ class Footer extends Component {
           <div className="row">
             <div className="col text-center">
               <h5>Follow Me!</h5>
-              <a href="https://www.instagram.com/" />
-              <i className="fa fa-2x fa-instagram" />
-              <a href="https://www.facebook.com/" />
-              <i className="fa fa-2x fa-facebook" />
-              <a href="https://wwww.twitter.com/" />
-              <i className="fa fa-2x fa-twitter" />
-              <a href="https://www.youtube.com/" />
-              <i className="fa fa-2x fa-youtube" />
+              <a href="https://www.instagram.com/">
+                <i className="fa fa-2x fa-instagram" />
+              </a>
+              <a href="https://www.facebook.com/">
+                <i className="fa fa-2x fa-facebook" />
+              </a>
+              <a href="https://wwww.twitter.com/">
+                <i className="fa fa-2x fa-twitter" />
+              </a>
+              <a href="https://www.youtube.com/">
+                <i className="fa fa-2x fa-youtube" />
+              </a>
             </div>
           </div>
         </div>

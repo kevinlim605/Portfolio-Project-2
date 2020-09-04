@@ -14,7 +14,6 @@ import {
 function RenderMinutelyWeatherCard(props) {
   const date = new Date(props.weatherData.dt * 1000);
   const dateString = date.toString();
-  console.log(date);
   return (
     <Card>
       <CardImg src="" alt="" />
@@ -69,34 +68,20 @@ function MinutelyForecast(props) {
               <BreadcrumbItem>
                 <Link to="/weather">Weather</Link>
               </BreadcrumbItem>
+              <BreadcrumbItem>
+                <Link to="/weather/dailyforecast">Daily Forecast</Link>
+              </BreadcrumbItem>
+              <BreadcrumbItem>
+                <Link to="/weather/hourlyforecast">Hourly Forecast</Link>
+              </BreadcrumbItem>
               <BreadcrumbItem>Minutely Forecast</BreadcrumbItem>
             </Breadcrumb>
-          </div>
-        </div>
-
-        <div className="row">
-          <div className="col mt-3 mb-3">
-            <Link to="/weather/dailyforecast" style={{ color: "white" }}>
-              <Button type="button" color="secondary">
-                Daily Forecast
-              </Button>
-            </Link>
-            <Link to="/weather/hourlyforecast" style={{ color: "white" }}>
-              <Button type="button" color="secondary">
-                Hourly Forecast
-              </Button>
-            </Link>
-            <Link to="/weather/minutelyforecast" style={{ color: "white" }}>
-              <Button type="button" color="secondary">
-                Minutely Forecast
-              </Button>
-            </Link>
           </div>
         </div>
         <div className="row row-content">
           {props.weather.minutely.map((data) => {
             return (
-              <div className="col-md-3 mb-2">
+              <div className="col-md-3">
                 <RenderMinutelyWeatherCard weatherData={data} />
               </div>
             );
