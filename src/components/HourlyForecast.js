@@ -40,8 +40,8 @@ function HourlyForecast(props) {
   if (typeof props.weather === "undefined") {
     return (
       <div className="container">
-        <div className="row">
-          <div className="col text-center">
+        <div className="row row-content">
+          <div className="col text-center mt-5">
             <h1> Please return and submit a location! </h1>
             <Button type="button" color="secondary">
               <Link to="/weather" style={{ color: "white" }}>
@@ -55,8 +55,8 @@ function HourlyForecast(props) {
   } else if (Object.keys(props.weather).length === 0) {
     return (
       <div className="container">
-        <div className="row">
-          <div className="col text-center">
+        <div className="row row-content">
+          <div className="col text-center mt-5">
             <h1> Please return and submit a location! </h1>
             <Button type="button" color="secondary">
               <Link to="/weather" style={{ color: "white" }}>

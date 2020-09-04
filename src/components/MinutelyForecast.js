@@ -30,7 +30,7 @@ function MinutelyForecast(props) {
   if (typeof props.weather === "undefined") {
     return (
       <div className="container">
-        <div className="row">
+        <div className="row row-content">
           <div className="col text-center mt-5">
             <h1> Please return and submit a location! </h1>
             <Button type="button" color="secondary">
@@ -45,8 +45,8 @@ function MinutelyForecast(props) {
   } else if (Object.keys(props.weather).length === 0) {
     return (
       <div className="container">
-        <div className="row">
-          <div className="col text-center">
+        <div className="row row-content">
+          <div className="col text-center mt-5">
             <h1> Please return and submit a location! </h1>
             <Button type="button" color="secondary">
               <Link to="/weather" style={{ color: "white" }}>
@@ -75,7 +75,7 @@ function MinutelyForecast(props) {
         </div>
 
         <div className="row">
-          <div className="col mt-3 mb-5">
+          <div className="col mt-3 mb-3">
             <Link to="/weather/dailyforecast" style={{ color: "white" }}>
               <Button type="button" color="secondary">
                 Daily Forecast
@@ -93,15 +93,15 @@ function MinutelyForecast(props) {
             </Link>
           </div>
         </div>
-        {props.weather.minutely.map((data) => {
-          return (
-            <div className="row">
-              <div className="col">
+        <div className="row row-content">
+          {props.weather.minutely.map((data) => {
+            return (
+              <div className="col-md-3 mb-2">
                 <RenderMinutelyWeatherCard weatherData={data} />
               </div>
-            </div>
-          );
-        })}
+            );
+          })}
+        </div>
       </div>
     );
   }

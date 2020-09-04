@@ -42,3 +42,8 @@ body {
   font-weight: bold;
   background-color: #e9ecef;
 }
+
+.card-header {
+  padding-top: 7px;
+  padding-bottom: 0;
+}
