@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import Header from "./Header";
 import Footer from "./Footer";
 import Home from "./Home";
+import Contact from "./Contact";
 import Weather from "./Weather";
 import DailyForecast from "./DailyForecast";
 import HourlyForecast from "./HourlyForecast";
@@ -56,6 +57,7 @@ class Main extends Component {
               <MinutelyForecast weather={this.props.weatherdata.weatherdata} />
             )}
           />
+          <Route path="/contact" component={Contact} />
           <Redirect to="/home" />
         </Switch>
         <Footer />
