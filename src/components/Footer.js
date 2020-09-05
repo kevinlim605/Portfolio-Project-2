@@ -3,7 +3,7 @@ import React, { Component } from "react";
 class Footer extends Component {
   render() {
     return (
-      <div className="site-footer footer">
+      <div className="site-footer footer fixed-bottom">
         <div className="container">
           <div className="row">
             <div className="col text-center">

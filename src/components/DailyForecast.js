@@ -3,12 +3,12 @@ import { Link } from "react-router-dom";
 import { Button, Breadcrumb, BreadcrumbItem } from "reactstrap";
 import { Card, CardImg, CardText, CardBody, CardHeader } from "reactstrap";
 import { Loading } from "./Loading";
+import { dateConfigurator } from "../shared/dateConfigurator";
 
 function RenderDailyWeatherCard(props) {
   const src = `../assets/images/${props.weatherData.weather[0].icon}.jpg`;
   const url = `http://openweathermap.org/img/wn/${props.weatherData.weather[0].icon}.png`;
-  const date = new Date(props.weatherData.dt * 1000);
-  const dateString = `${date.toDateString()} ${date.toTimeString()}`;
+  const dateString = dateConfigurator(props.weatherData.dt);
   if (props.loading) {
     return <Loading />;
   } else if (props.errMess) {
@@ -127,7 +127,7 @@ function DailyForecast(props) {
         {props.weather.daily.map((data) => {
           return (
             <div className="row row-content">
-              <div className="col-12 col-md-6 offset-md-3">
+              <div className="d-flex justify-content-center col">
                 <RenderDailyWeatherCard
                   weatherData={data}
                   loading={props.weatherdataLoading}

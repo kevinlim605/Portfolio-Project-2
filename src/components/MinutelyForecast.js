@@ -10,16 +10,16 @@ import {
   Breadcrumb,
   BreadcrumbItem,
 } from "reactstrap";
+import { dateConfigurator } from "../shared/dateConfigurator";
 
 function RenderMinutelyWeatherCard(props) {
-  const date = new Date(props.weatherData.dt * 1000);
-  const dateString = date.toString();
+  const dateString = dateConfigurator(props.weatherData.dt);
   return (
     <Card>
       <CardImg src="" alt="" />
       <CardBody>
         <CardTitle>{dateString}</CardTitle>
-        <CardText>precipitation: {props.weatherData.precipitation}mm</CardText>
+        <CardText>precipitation: {props.weatherData.precipitation} mm</CardText>
       </CardBody>
     </Card>
   );
@@ -81,7 +81,7 @@ function MinutelyForecast(props) {
         <div className="row row-content">
           {props.weather.minutely.map((data) => {
             return (
-              <div className="col-md-3">
+              <div className="col-md-3 mb-2">
                 <RenderMinutelyWeatherCard weatherData={data} />
               </div>
             );

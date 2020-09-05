@@ -10,12 +10,12 @@ import {
   Breadcrumb,
   BreadcrumbItem,
 } from "reactstrap";
+import { dateConfigurator } from "../shared/dateConfigurator";
 
 function RenderHourlyWeatherCard(props) {
   const src = `../assets/images/${props.weatherData.weather[0].icon}.jpg`;
   const url = `http://openweathermap.org/img/wn/${props.weatherData.weather[0].icon}.png`;
-  const date = new Date(props.weatherData.dt * 1000);
-  const dateString = date.toString();
+  const dateString = dateConfigurator(props.weatherData.dt);
   return (
     <Card className="card-selector">
       <CardImg
@@ -116,7 +116,7 @@ function HourlyForecast(props) {
         {props.weather.hourly.map((data) => {
           return (
             <div className="row row-content">
-              <div className="col-6 offset-3">
+              <div className="d-flex justify-content-center col">
                 <RenderHourlyWeatherCard weatherData={data} />
               </div>
             </div>
