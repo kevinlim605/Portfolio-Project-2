@@ -4,7 +4,7 @@ function Home() {
   return (
     <div className="container">
       <div class="row row-content">
-        <div className="col mt-5">
+        <div className="col mt-4">
           <h1 className="text-center">Welcome!</h1>
           <hr />
           <p>

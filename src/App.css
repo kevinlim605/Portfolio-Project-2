@@ -11,11 +11,16 @@ body {
 }
 
 .navbar {
-  background-image: linear-gradient(#cec8ff, #fadcdc);
+  font-weight: bold;
+  background-image: linear-gradient(#feb236, #ffcc00, #ffef96);
+}
+
+.breadcrumb {
+  background-color: #b2b2b2;
 }
 
 .site-footer {
-  background-image: linear-gradient(#cec8ff, #fadcdc);
+  background-image: linear-gradient(to right, #b1e5f2, #3fa7d6, #2b9eb3);
   padding: 30px 0;
   margin-top: 30px;
 }
