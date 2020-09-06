@@ -30,22 +30,23 @@ function RenderDailyWeatherCard(props) {
         <CardBody>
           <CardText>
             {dateString} <br />
-            Description: {props.weatherData.weather[0].description} <br />
+            Description: {props.weatherData.weather[0].description}
+            <br />
             <br />
             <div class="row">
               <div className="col-6">
-                Temp: {props.weatherData.temp.day} &#8457;
+                Temp: {props.weatherData.temp.day} &#176;F
               </div>
               <div className="col-6">
-                Feels Like: {props.weatherData.feels_like.day} &#8457;
+                Feels Like: {props.weatherData.feels_like.day} &#176;F
               </div>
             </div>
             <div class="row">
               <div className="col-6">
-                Max: {props.weatherData.temp.max} &#8457;
+                Max: {props.weatherData.temp.max} &#176;F
               </div>
               <div className="col-6">
-                Min: {props.weatherData.temp.min} &#8457;
+                Min: {props.weatherData.temp.min} &#176;F
               </div>
             </div>
             <div class="row">
@@ -61,7 +62,7 @@ function RenderDailyWeatherCard(props) {
                 Wind Speed: {props.weatherData.wind_speed} mph
               </div>
               <div className="col-6">
-                Pressure: {props.weatherData.pressure} hPa;
+                Pressure: {props.weatherData.pressure} hPa
               </div>
             </div>
           </CardText>

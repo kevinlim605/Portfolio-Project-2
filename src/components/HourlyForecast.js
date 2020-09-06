@@ -35,9 +35,9 @@ function RenderHourlyWeatherCard(props) {
           Description: {props.weatherData.weather[0].description} <br />
           <br />
           <div class="row">
-            <div className="col-6">Temp: {props.weatherData.temp} &#8457;</div>
+            <div className="col-6">Temp: {props.weatherData.temp} &#176;F</div>
             <div className="col-6">
-              Feels Like: {props.weatherData.feels_like} &#8457;
+              Feels Like: {props.weatherData.feels_like} &#176;F;
             </div>
           </div>
           <div class="row">
@@ -51,7 +51,7 @@ function RenderHourlyWeatherCard(props) {
               Wind Speed: {props.weatherData.wind_speed} mph
             </div>
             <div className="col-6">
-              Pressure: {props.weatherData.pressure} hPa;
+              Pressure: {props.weatherData.pressure} hPa
             </div>
           </div>
         </CardText>

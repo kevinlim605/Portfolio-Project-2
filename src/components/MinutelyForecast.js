@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 import {
   Button,
   Card,
-  CardImg,
   CardText,
+  CardHeader,
   CardBody,
   CardTitle,
   Breadcrumb,
@@ -16,9 +16,8 @@ function RenderMinutelyWeatherCard(props) {
   const dateString = dateConfigurator(props.weatherData.dt);
   return (
     <Card>
-      <CardImg src="" alt="" />
+      <CardHeader>{dateString}</CardHeader>
       <CardBody>
-        <CardTitle>{dateString}</CardTitle>
         <CardText>precipitation: {props.weatherData.precipitation} mm</CardText>
       </CardBody>
     </Card>
@@ -81,7 +80,7 @@ function MinutelyForecast(props) {
         <div className="row row-content">
           {props.weather.minutely.map((data) => {
             return (
-              <div className="col-md-3 mb-2">
+              <div className="d-flex justify-content-center col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
                 <RenderMinutelyWeatherCard weatherData={data} />
               </div>
             );
