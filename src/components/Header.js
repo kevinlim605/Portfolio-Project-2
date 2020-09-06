@@ -32,7 +32,7 @@ class Header extends Component {
             <div className="row">
               <div className="col">
                 <h1>
-                  <img src="assets/images/logo.png" width="100" height="100" />{" "}
+                  <img src="assets/images/logo.png" height="100" width="100" />{" "}
                   Weather App
                 </h1>
               </div>
