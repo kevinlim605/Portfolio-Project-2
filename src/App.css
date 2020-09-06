@@ -41,6 +41,7 @@ body {
 .card-header {
   padding-top: 7px;
   padding-bottom: 0;
+  background-color: #e0e2e4;
 }
 
 .card-selector {

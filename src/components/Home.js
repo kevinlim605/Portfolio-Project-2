@@ -3,9 +3,9 @@ import React from "react";
 function Home() {
   return (
     <div className="container">
-      <div class="row row-content text-center">
+      <div class="row row-content">
         <div className="col mt-5">
-          <h1>Welcome!</h1>
+          <h1 className="text-center">Welcome!</h1>
           <hr />
           <p>
             Welcome to my Weather App! This website is built using React. This
@@ -25,7 +25,7 @@ function Home() {
             the nearest hour. As for the data retrieved for the minutely basis,
             it will reflect the time at which the API was called.
           </p>
-          <h2>
+          <h2 className="text-center">
             Enjoy! <img src="assets/images/sun.png" width="50" height="51" />
           </h2>
         </div>
