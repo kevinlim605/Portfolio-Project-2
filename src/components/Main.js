@@ -32,11 +32,7 @@ class Main extends Component {
             exact
             path="/weather"
             render={() => (
-              <Weather
-                fetchWeatherdata={this.props.fetchWeatherdata}
-                weatherdataLoading={this.props.weatherdata.isLoading}
-                weatherdataErrMess={this.props.weatherdata.errMess}
-              />
+              <Weather fetchWeatherdata={this.props.fetchWeatherdata} />
             )}
           />
           <Route

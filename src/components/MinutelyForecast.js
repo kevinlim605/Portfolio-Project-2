@@ -25,22 +25,7 @@ function RenderMinutelyWeatherCard(props) {
 }
 
 function MinutelyForecast(props) {
-  if (typeof props.weather === "undefined") {
-    return (
-      <div className="container">
-        <div className="row row-content">
-          <div className="col text-center mt-5">
-            <h1> Please return and submit a location! </h1>
-            <Button type="button" color="secondary">
-              <Link to="/weather" style={{ color: "white" }}>
-                Return
-              </Link>
-            </Button>
-          </div>
-        </div>
-      </div>
-    );
-  } else if (Object.keys(props.weather).length === 0) {
+  if (Object.keys(props.weather).length === 0) {
     return (
       <div className="container">
         <div className="row row-content">
