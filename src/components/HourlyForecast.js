@@ -10,6 +10,7 @@ import {
   Breadcrumb,
   BreadcrumbItem,
 } from "reactstrap";
+import { Stagger, Fade } from "react-animation-components";
 import { dateConfigurator } from "../shared/dateConfigurator";
 
 function RenderHourlyWeatherCard(props) {
@@ -17,46 +18,52 @@ function RenderHourlyWeatherCard(props) {
   const url = `http://openweathermap.org/img/wn/${props.weatherData.weather[0].icon}.png`;
   const dateString = dateConfigurator(props.weatherData.dt);
   return (
-    <Card className="card-selector">
-      <CardImg
-        src={src}
-        alt={props.weatherData.weather[0].description}
-        height="225"
-      />
-      <CardHeader>
-        <h2>
-          <img src={url} alt="weatherIcon"></img>
-          {props.weatherData.weather[0].main}
-        </h2>
-      </CardHeader>
-      <CardBody>
-        <CardText>
-          {dateString} <br />
-          Description: {props.weatherData.weather[0].description} <br />
-          <br />
-          <div class="row">
-            <div className="col-6">Temp: {props.weatherData.temp} &#176;F</div>
-            <div className="col-6">
-              Feels Like: {props.weatherData.feels_like} &#176;F;
+    <Fade in>
+      <Card className="card-selector">
+        <CardImg
+          src={src}
+          alt={props.weatherData.weather[0].description}
+          height="225"
+        />
+        <CardHeader>
+          <h2>
+            <img src={url} alt="weatherIcon"></img>
+            {props.weatherData.weather[0].main}
+          </h2>
+        </CardHeader>
+        <CardBody>
+          <CardText>
+            {dateString} <br />
+            Description: {props.weatherData.weather[0].description} <br />
+            <br />
+            <div class="row">
+              <div className="col-6">
+                Temp: {props.weatherData.temp} &#176;F
+              </div>
+              <div className="col-6">
+                Feels Like: {props.weatherData.feels_like} &#176;F;
+              </div>
             </div>
-          </div>
-          <div class="row">
-            <div className="col-6">
-              Chance of Rain: {props.weatherData.pop}%
+            <div class="row">
+              <div className="col-6">
+                Chance of Rain: {props.weatherData.pop}%
+              </div>
+              <div className="col-6">
+                Humidity: {props.weatherData.humidity}%
+              </div>
             </div>
-            <div className="col-6">Humidity: {props.weatherData.humidity}%</div>
-          </div>
-          <div class="row">
-            <div className="col-6">
-              Wind Speed: {props.weatherData.wind_speed} mph
+            <div class="row">
+              <div className="col-6">
+                Wind Speed: {props.weatherData.wind_speed} mph
+              </div>
+              <div className="col-6">
+                Pressure: {props.weatherData.pressure} hPa
+              </div>
             </div>
-            <div className="col-6">
-              Pressure: {props.weatherData.pressure} hPa
-            </div>
-          </div>
-        </CardText>
-      </CardBody>
-    </Card>
+          </CardText>
+        </CardBody>
+      </Card>
+    </Fade>
   );
 }
 
@@ -98,15 +105,17 @@ function HourlyForecast(props) {
             </Breadcrumb>
           </div>
         </div>
-        {props.weather.hourly.map((data) => {
-          return (
-            <div className="row row-content">
-              <div className="d-flex justify-content-center col">
-                <RenderHourlyWeatherCard weatherData={data} />
+        <Stagger in>
+          {props.weather.hourly.map((data) => {
+            return (
+              <div className="row row-content">
+                <div className="d-flex justify-content-center col">
+                  <RenderHourlyWeatherCard weatherData={data} />
+                </div>
               </div>
-            </div>
-          );
-        })}
+            );
+          })}
+        </Stagger>
       </div>
     );
   }

@@ -10,17 +10,22 @@ import {
   Breadcrumb,
   BreadcrumbItem,
 } from "reactstrap";
+import { Fade, Stagger } from "react-animation-components";
 import { dateConfigurator } from "../shared/dateConfigurator";
 
 function RenderMinutelyWeatherCard(props) {
   const dateString = dateConfigurator(props.weatherData.dt);
   return (
-    <Card>
-      <CardHeader>{dateString}</CardHeader>
-      <CardBody>
-        <CardText>precipitation: {props.weatherData.precipitation} mm</CardText>
-      </CardBody>
-    </Card>
+    <Fade in>
+      <Card>
+        <CardHeader>{dateString}</CardHeader>
+        <CardBody>
+          <CardText>
+            precipitation: {props.weatherData.precipitation} mm
+          </CardText>
+        </CardBody>
+      </Card>
+    </Fade>
   );
 }
 
@@ -62,15 +67,18 @@ function MinutelyForecast(props) {
             </Breadcrumb>
           </div>
         </div>
-        <div className="row row-content">
-          {props.weather.minutely.map((data) => {
-            return (
-              <div className="d-flex justify-content-center col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
-                <RenderMinutelyWeatherCard weatherData={data} />
-              </div>
-            );
-          })}
-        </div>
+        <Stagger in>
+          <div className="row row-content">
+            {props.weather.minutely.map((data) => {
+              return (
+                <div className="d-flex justify-content-center col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
+                  <RenderMinutelyWeatherCard weatherData={data} />
+                </div>
+              );
+            })}
+            \{" "}
+          </div>
+        </Stagger>
       </div>
     );
   }

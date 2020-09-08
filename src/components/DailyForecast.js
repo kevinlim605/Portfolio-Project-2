@@ -2,65 +2,69 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Button, Breadcrumb, BreadcrumbItem } from "reactstrap";
 import { Card, CardImg, CardText, CardBody, CardHeader } from "reactstrap";
-import { Loading } from "./Loading";
 import { dateConfigurator } from "../shared/dateConfigurator";
+import { Fade, Stagger } from "react-animation-components";
 
 function RenderDailyWeatherCard(props) {
   const src = `../assets/images/${props.weatherData.weather[0].icon}.jpg`;
   const url = `http://openweathermap.org/img/wn/${props.weatherData.weather[0].icon}.png`;
   const dateString = dateConfigurator(props.weatherData.dt);
   return (
-    <Card className="card-selector">
-      <CardImg
-        src={src}
-        alt={props.weatherData.weather[0].description}
-        height="225"
-      />
-      <CardHeader>
-        <h2>
-          <img src={url} alt="weatherIcon"></img>
-          {props.weatherData.weather[0].main}
-        </h2>
-      </CardHeader>
-      <CardBody>
-        <CardText>
-          {dateString} <br />
-          Description: {props.weatherData.weather[0].description}
-          <br />
-          <br />
-          <div class="row">
-            <div className="col-6">
-              Temp: {props.weatherData.temp.day} &#176;F
+    <Fade in>
+      <Card className="card-selector">
+        <CardImg
+          src={src}
+          alt={props.weatherData.weather[0].description}
+          height="225"
+        />
+        <CardHeader>
+          <h2>
+            <img src={url} alt="weatherIcon"></img>
+            {props.weatherData.weather[0].main}
+          </h2>
+        </CardHeader>
+        <CardBody>
+          <CardText>
+            {dateString} <br />
+            Description: {props.weatherData.weather[0].description}
+            <br />
+            <br />
+            <div class="row">
+              <div className="col-6">
+                Temp: {props.weatherData.temp.day} &#176;F
+              </div>
+              <div className="col-6">
+                Feels Like: {props.weatherData.feels_like.day} &#176;F
+              </div>
             </div>
-            <div className="col-6">
-              Feels Like: {props.weatherData.feels_like.day} &#176;F
+            <div class="row">
+              <div className="col-6">
+                Max: {props.weatherData.temp.max} &#176;F
+              </div>
+              <div className="col-6">
+                Min: {props.weatherData.temp.min} &#176;F
+              </div>
             </div>
-          </div>
-          <div class="row">
-            <div className="col-6">
-              Max: {props.weatherData.temp.max} &#176;F
+            <div class="row">
+              <div className="col-6">
+                Chance of Rain: {props.weatherData.pop}%
+              </div>
+              <div className="col-6">
+                Humidity: {props.weatherData.humidity}%
+              </div>
             </div>
-            <div className="col-6">
-              Min: {props.weatherData.temp.min} &#176;F
+            <div class="row">
+              <div className="col-6">
+                Wind Speed: {props.weatherData.wind_speed} mph
+              </div>
+              <div className="col-6">
+                Pressure: {props.weatherData.pressure} hPa
+              </div>
             </div>
-          </div>
-          <div class="row">
-            <div className="col-6">
-              Chance of Rain: {props.weatherData.pop}%
-            </div>
-            <div className="col-6">Humidity: {props.weatherData.humidity}%</div>
-          </div>
-          <div class="row">
-            <div className="col-6">
-              Wind Speed: {props.weatherData.wind_speed} mph
-            </div>
-            <div className="col-6">
-              Pressure: {props.weatherData.pressure} hPa
-            </div>
-          </div>
-        </CardText>
-      </CardBody>
-    </Card>
+          </CardText>
+        </CardBody>
+      </Card>
+    </Fade>
   );
 }
 
@@ -102,19 +106,17 @@ function DailyForecast(props) {
             </Breadcrumb>
           </div>
         </div>
-        {props.weather.daily.map((data) => {
-          return (
-            <div className="row row-content">
-              <div className="d-flex justify-content-center col">
-                <RenderDailyWeatherCard
-                  weatherData={data}
-                  loading={props.weatherdataLoading}
-                  errMess={props.weatherdataErrMess}
-                />
+        <Stagger in>
+          {props.weather.daily.map((data) => {
+            return (
+              <div className="row row-content">
+                <div className="d-flex justify-content-center col">
+                  <RenderDailyWeatherCard weatherData={data} />
+                </div>
               </div>
-            </div>
-          );
-        })}
+            );
+          })}
+        </Stagger>
       </div>
     );
   }
